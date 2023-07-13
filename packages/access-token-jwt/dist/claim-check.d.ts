@@ -1,0 +1,13 @@
+import type { JWTPayload } from 'jose';
+export type JSONPrimitive = string | number | boolean | null;
+type ClaimChecker = (payload?: JWTPayload) => void;
+export type RequiredScopes<R = ClaimChecker> = (scopes: string | string[]) => R;
+export declare const requiredScopes: RequiredScopes;
+export declare const scopeIncludesAny: RequiredScopes;
+export type ClaimIncludes<R = ClaimChecker> = (claim: string, ...expected: JSONPrimitive[]) => R;
+export declare const claimIncludes: ClaimIncludes;
+export type ClaimEquals<R = ClaimChecker> = (claim: string, expected: JSONPrimitive) => R;
+export declare const claimEquals: ClaimEquals;
+export type ClaimCheck<R = ClaimChecker> = (fn: (payload: JWTPayload) => boolean, errMsg?: string) => R;
+export declare const claimCheck: ClaimCheck;
+export {};
